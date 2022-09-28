@@ -1,3 +1,6 @@
+//will handle the input field with logic
+
+import React from 'react';
 import './App.css';
 
 function App() {
