@@ -1,9 +1,11 @@
 :root {
-  --dark-accent: #011303;
+  --dark-accent: #11213d;
+  --blue-accent: #2f6ca9;
+  --red-accent: #85324c;
   --body-color: rgb(237, 237, 255);
   --card-color: white;
-  --accent: gold;
   --box-shadow: rgba(128, 128, 128, 0.228);
+  --line: #b9c5d1;
 }
 
 * {
@@ -53,5 +55,16 @@ ul {
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: var(--blue-accent);
+  color: white;
+  border: none;
+  border-radius: 7px;
+}
+
+hr {
+  border-top: 1px solid var(--line);
 }

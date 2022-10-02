@@ -46,8 +46,9 @@ class Task extends Component {
     const { task, tasks } = this.state; // destructuring state (for props too)
 
     return(
-      <div className="card">
+      <div className="taskWrapper">
         <h1 className="title">Task List</h1>
+        <hr />
         <form onSubmit={this.onSubmitTask}>
           <label htmlFor="tastInput">Enter task</label>
           <input onChange={this.handleChange} value={task.title} type="text" id="taskInput" />

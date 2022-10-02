@@ -1,0 +1,25 @@
+/* MAIN */
+
+.main-wrapper {
+    padding: 0 40px 40px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+  
+.main-wrapper>.card {
+    flex: 1;
+    max-width: 450px;
+    min-width: min-content;
+}
+  
+.display.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskPlaceholder {
+    height: auto;
+    width: 150px;
+}
