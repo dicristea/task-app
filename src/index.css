@@ -1,11 +1,12 @@
 :root {
   --dark-accent: #11213d;
-  --blue-accent: #2f6ca9;
-  --red-accent: #85324c;
+  --blue-accent: #0059b1;
+  --red-accent: #9e2047;
   --body-color: rgb(237, 237, 255);
   --card-color: white;
-  --box-shadow: rgba(128, 128, 128, 0.228);
+  --box-shadow: rgba(128, 128, 128, 0.317);
   --line: #b9c5d1;
+  --hover: rgb(239, 239, 239);
 }
 
 * {
@@ -15,9 +16,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,15 +39,6 @@ code {
   justify-content: center;
 }
 
-
-form {
-  margin: 1rem 0 1rem 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -57,14 +47,34 @@ ul {
   flex-direction: column;
 }
 
+input, textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
 button {
-  padding: 10px 15px;
-  background-color: var(--blue-accent);
+  font-weight: bold;
+  padding: 12px 20px;
+  background-color: var(--red-accent);
   color: white;
   border: none;
-  border-radius: 7px;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: 0.92;
+  transition: 0.2s;
 }
+
+button:hover {
+  opacity: 1;
+}
+
 
 hr {
   border-top: 1px solid var(--line);
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue-accent);
+  cursor: pointer;
 }

@@ -43,11 +43,12 @@ class Task extends Component {
 
 
   render() {
-    const { task, tasks } = this.state; // destructuring state (for props too)
+    const { task, tasks } = this.state;
 
     return(
       <div className="taskWrapper">
         <h1 className="title">Task List</h1>
+         {/* should change when project/view is selected*/}
         <hr />
         <form onSubmit={this.onSubmitTask}>
           <label htmlFor="tastInput">Enter task</label>
