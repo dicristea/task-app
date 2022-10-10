@@ -6,26 +6,67 @@
     flex-wrap: wrap;
     gap: 40px;
 }
-  
+
 .main-wrapper>.card {
     flex: 1;
     max-width: 450px;
     min-width: min-content;
-    padding: 30px;
-}
-  
-.display.card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.taskPlaceholder {
-    height: auto;
-    width: 150px;
+.card.main {
+    padding: 30px;
+    padding-bottom: 0;
+    display: grid;
 }
 
 .title {
     font-size: 1.5rem;
     margin-bottom: 10px;;
+}
+
+.task-holder {
+    padding: 20px 0;
+}
+
+.taskWrapper {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content ;
+}
+
+.quick-task-form {
+    display: grid;
+    grid-template-columns: auto min-content;
+    gap: 10px;
+    padding: 30px 0;
+}
+
+form>.quick-task-name {
+    border: 1px solid var(--line);
+    caret-color: var(--blue-accent);
+    overflow: hidden;
+    padding: 7px 10px;
+    border-radius: 10px;
+    transition: 180ms;
+    font-size: 1rem;
+}
+
+form>.quick-task-name:focus {
+    border: 1px solid var(--blue-accent);
+}
+  
+.card.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-placeholder {
+    height: auto;
+    width: 150px;
+}
+
+.create-task-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 3px 13px
 }

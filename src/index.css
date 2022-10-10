@@ -9,14 +9,17 @@
   --hover: rgb(239, 239, 239);
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
-  font-family: Tahoma, Verdana, Geneva, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -49,10 +52,14 @@ ul {
 
 input, textarea {
   font-family: inherit;
-  font-size: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  resize: none;
 }
 
 button {
+  font-size: 0.85rem;
   font-weight: bold;
   padding: 12px 20px;
   background-color: var(--red-accent);
@@ -64,7 +71,7 @@ button {
   transition: 0.2s;
 }
 
-button:hover {
+button:hover, button:active {
   opacity: 1;
 }
 
