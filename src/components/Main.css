@@ -36,15 +36,32 @@
 
 .tasks-box>div {
     display: grid;
-    grid-template-columns: 100px 2fr min-content min-content;
+    grid-template-columns: 100px 2fr 90px repeat(3, min-content);
     gap: 10px;
     padding: 10px 0;
+    overflow-wrap: break-word;
 }
 
-/* .edit-task-btn, .delete-task-btn {
-    height: auto;
-    width: 23px;
-} */
+.edit-task-btn, .delete-task-btn {
+    background-color: transparent;
+    border-radius: 0;
+    opacity: 0.6;
+    padding: 0;
+
+    height: 1.5rem;
+    width: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.edit-task-btn {
+    background-image: url(../assets/edit.png);
+}
+
+.delete-task-btn {
+    background-image: url(../assets/delete.png);
+}
 
 /* .quick-task-form {
     display: grid;

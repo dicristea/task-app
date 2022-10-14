@@ -47,7 +47,15 @@ class Main extends Component {
                     </div>
                     <div className="task-holder">
                         <CreateList handleEdit={this.handleEdit}/>
-                        {displayEdit && <Popup content='task' task={taskList[taskIndex]} index={taskIndex} handleEdit={this.handleEdit} handleClose={this.handleClose} />}
+                        {
+                            displayEdit && 
+                            <Popup 
+                                content='task' 
+                                task={taskList[taskIndex]} 
+                                index={taskIndex} 
+                                handleEdit={this.handleEdit} 
+                                handleClose={this.handleClose} />
+                        }
 
                     </div>
                 </div>

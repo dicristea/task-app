@@ -94,7 +94,7 @@ nav.navbar.card {
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,7 +162,7 @@ nav.navbar.card {
   width: 100%;;
 }
 
-/* .form-right {
+.form-right {
   border-left: 1px solid var(--line);
   padding-left: 10px;
   text-align: left;
@@ -193,7 +193,7 @@ nav.navbar.card {
 
 .date-box>label {
   font-weight: bold;
-} */
+}
 
 .form-handlers {
   display: flex;

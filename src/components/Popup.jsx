@@ -9,14 +9,16 @@ class Popup extends Component {
 
         this.onChangeTask = this.onChangeTask.bind(this);
         this.onChangeNotes = this.onChangeNotes.bind(this);
+        this.onChangePriority = this.onChangePriority.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
         this.handleForm = this.handleForm.bind(this);
 
         this.state = {
             name: props.task.name || '',
             notes: props.task.notes || '',
             list: 'Personal',
-            priority: '',
-            dueDate: '',
+            priority: props.task.priority || 'moderate',
+            dueDate: props.task.dueDate || '',
             id: uniqid()
         }
 
@@ -35,6 +37,18 @@ class Popup extends Component {
         });
     }
 
+    onChangePriority(e) {
+        this.setState({
+            priority: e.target.value
+        })
+    }
+
+    onChangeDate(e) {
+        this.setState ({
+            dueDate: e.target.value
+        })
+    }
+
     handleForm(e) { 
         let taskList = [];
         
@@ -42,11 +56,12 @@ class Popup extends Component {
             taskList = JSON.parse(window.localStorage.getItem('tasks'));
         }
 
-        if (this.props.index !== null || this.props.index !== undefined) {
+        if (this.props.index !== false) {
             taskList[this.props.index] = this.state
         } else {
             taskList.push(this.state)
         }
+
 
         window.localStorage.setItem('tasks', JSON.stringify(taskList)) // localStorage cannot hold any data type except for strings
         window.location.reload(false) // reloads page to trigger CreateList localStorage display update
@@ -55,7 +70,7 @@ class Popup extends Component {
 
     render() {
         const { content, handleClose } = this.props;
-        const { name, notes } = this.state;
+        const { name, notes, priority, dueDate } = this.state;
 
         let form;
 
@@ -75,8 +90,7 @@ class Popup extends Component {
                                 autoFocus
                             />
                             <div className="form-notes-header">NOTES</div>
-                            <textarea 
-                                className="task-notes" 
+                            <textarea className="task-notes" 
                                 name="taskNotes" 
                                 id="taskNotes" 
                                 rows="2" 
@@ -86,8 +100,7 @@ class Popup extends Component {
                                 onChange={this.onChangeNotes}
                             />
                         </div>
-                        {/* USE SELECT INPUT INSTEAD OF RADIO: https://reactjs.org/docs/forms.html */}
-                        {/* <div className="form-right">
+                        <div className="form-right">
                             <div className="list-box">
                                 <span>LIST</span>
                             </div>
@@ -95,14 +108,19 @@ class Popup extends Component {
                             <div className="priority-box">
                                 <span>PRIORITY</span>
                                 <div className="priority-choices">
+                                    <select value={priority} onChange={this.onChangePriority}>
+                                        <option value="high">High</option>
+                                        <option value="moderate">Moderate</option>
+                                        <option value="low">Low</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div className="date-box">
                             <label htmlFor="dueDate">Due date:</label>
-                            <input type="date" id="dueDate" name="due-date" min={new Date().toISOString().split('T')[0]}/>
+                            <input type="date" id="dueDate" name="due-date" value={dueDate} min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
 
                     <div className="form-handlers">

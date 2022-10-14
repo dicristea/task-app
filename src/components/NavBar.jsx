@@ -47,7 +47,14 @@ class NavBar extends Component {
 
         <div className="newTaskWrap">
           <button type='button' onClick={this.toggleTaskPopup}>+ Create a task</button>
-          {newTask && <Popup content='task' task={false} index={false} handleClose={this.toggleTaskPopup}/>}
+          {
+            newTask && 
+            <Popup 
+              content='task' 
+              task={false} 
+              index={false}
+              handleClose={this.toggleTaskPopup}/>
+          }
         </div>
 
         <div className="mainNav">

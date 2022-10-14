@@ -43,24 +43,21 @@ class CreateList extends Component {
                     <div key={task.id}>
                         <div className="task-name" style={{fontWeight: 600}}>{task.name}</div>
                         <div className="task-notes">{task.notes}</div>
+                        <div className="date-box">{task.dueDate}</div>
+                        <div className="priority-box">{task.priority}</div>
                         <button 
                             className="edit-task-btn" 
                             type="button" 
                             id="editTask" 
-                            // src={editIcon}
                             onClick={() => handleEdit(index)} 
                         >
-                            Edit
                         </button>
                         <button 
                             className="delete-task-btn" 
                             type="button" 
                             id="deleteTask" 
-                            // src={deleteIcon}
                             onClick={() => this.handleDelete(index)}
-                        >
-                            Delete
-                        </button>
+                         />
                     </div>
                 )}
             </div>
