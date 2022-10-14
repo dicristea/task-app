@@ -1,34 +1,55 @@
 import React, { Component } from "react";
 import './Main.css';
-import Tasks from "./TaskList";
-import taskPlaceholder from "../assets/nothing-selected.png";
-import Overview from "./Overview";
+import CreateList from "./CreateList";
+import Popup from "./Popup";
 
 class Main extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
 
-        this.state = {}
+        this.state = {
+            displayEdit: false,
+            taskIndex: ''
+        }    
     }
 
+    handleClose() {
+        this.setState({
+            displayEdit: !this.state.displayEdit,
+        })
+    }
+
+    handleEdit = (index) => {
+        this.setState({
+            displayEdit: !this.state.displayEdit,
+            taskIndex: index
+        })
+    }
+
+
     render() {
+        const { displayEdit, taskIndex } = this.state;
+
+        let taskList = [];
+
+        if (window.localStorage.getItem('tasks') !== null) {
+            taskList = JSON.parse(window.localStorage.getItem('tasks'))
+        }
+
         return(
+
             <div className="main-wrapper">
                 <div className="card main">
-                    <div className="taskWrapper">
-                        <div className="tasks-header">
-                            <h1 className="title">Task List</h1>
-                            {/* should change when project/view is selected*/}
-                            <hr />
-                        </div>
-                        <div className="task-holder">
-                        <Overview />
-                        </div>
+                    <div className="tasks-header">
+                        <h1 className="title">Task List</h1>
+                        {/* should change when project/view is selected*/}
+                        <hr />
                     </div>
-                </div>
-                <div className="card display">
-                    {/* if nothing to display, display the pretty task image */}
-                    <img className="task-placeholder" src={taskPlaceholder} alt="Task Placeholder" />
+                    <div className="task-holder">
+                        <CreateList handleEdit={this.handleEdit}/>
+                        {displayEdit && <Popup content='task' task={taskList[taskIndex]} index={taskIndex} handleEdit={this.handleEdit} handleClose={this.handleClose} />}
+
+                    </div>
                 </div>
             </div>
         )

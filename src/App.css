@@ -94,6 +94,7 @@ nav.navbar.card {
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,22 +147,22 @@ nav.navbar.card {
   background-color: rgba(159, 159, 159, 0.198);
 }
 
-.task-name {
+.task-name-input {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;;
 }
 
-.form-title {
+.form-notes-header {
   padding-left: 10px;
   font-weight: 500;
 }
 
-.task-notes {
+.task-notes-input {
   width: 100%;;
 }
 
-.form-right {
+/* .form-right {
   border-left: 1px solid var(--line);
   padding-left: 10px;
   text-align: left;
@@ -174,7 +175,7 @@ nav.navbar.card {
   line-height: 1.5em;
 }
 
-.priority-box>span {
+.priority-box>span, .task-name-input {
   font-weight: 600;
 }
 
@@ -192,8 +193,7 @@ nav.navbar.card {
 
 .date-box>label {
   font-weight: bold;
-}
-
+} */
 
 .form-handlers {
   display: flex;

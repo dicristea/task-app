@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import Overview from "./Overview";
-// import { format } from 'date-fns';
-
+import uniqid from "uniqid";
 
 // can use ternarary operator and js for repeated parts
 
@@ -12,15 +10,14 @@ class Popup extends Component {
         this.onChangeTask = this.onChangeTask.bind(this);
         this.onChangeNotes = this.onChangeNotes.bind(this);
         this.handleForm = this.handleForm.bind(this);
-        // this.onRadioChange = this.onRadioChange(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            task: '',
-            notes: '',
+            name: props.task.name || '',
+            notes: props.task.notes || '',
             list: 'Personal',
             priority: '',
-            dueDate: ''
+            dueDate: '',
+            id: uniqid()
         }
 
     }
@@ -28,8 +25,8 @@ class Popup extends Component {
 
     onChangeTask(e) {
         this.setState({
-            task: e.target.value
-        });
+            name: e.target.value
+        })
     }
 
     onChangeNotes(e) {
@@ -38,28 +35,28 @@ class Popup extends Component {
         });
     }
 
-    // onRadioChange(e) {
-    //     this.setState({
-    //         selectedOption: e.target.value
-    //     });
-    // }
-
     handleForm(e) { 
         let taskList = [];
         
         if (window.localStorage.getItem('tasks') !== null) {
             taskList = JSON.parse(window.localStorage.getItem('tasks'));
-            // console.log(taskList)
         }
-        
-        taskList.push(this.state)
+
+        if (this.props.index !== null || this.props.index !== undefined) {
+            taskList[this.props.index] = this.state
+        } else {
+            taskList.push(this.state)
+        }
+
         window.localStorage.setItem('tasks', JSON.stringify(taskList)) // localStorage cannot hold any data type except for strings
-        window.location.reload(false)
+        window.location.reload(false) // reloads page to trigger CreateList localStorage display update
     }
 
 
     render() {
         const { content, handleClose } = this.props;
+        const { name, notes } = this.state;
+
         let form;
 
         if (content === 'task') {
@@ -67,17 +64,17 @@ class Popup extends Component {
                 <form className="popup-form task-form">
                     <div className="task-entry-box">
                         <div className="form-left">
-                            <textarea className="task-name" 
+                            <textarea className="task-name-input" 
                                 name="taskName" 
                                 id="taskName" 
                                 rows="1" 
                                 placeholder="I want to..." 
                                 maxLength={1000} 
-                                value={this.state.task}
-                                onChange={this.onChangeTask} 
+                                value={name}
+                                onChange={this.onChangeTask}
                                 autoFocus
                             />
-                            <div className="form-title">NOTES</div>
+                            <div className="form-notes-header">NOTES</div>
                             <textarea 
                                 className="task-notes" 
                                 name="taskNotes" 
@@ -85,10 +82,11 @@ class Popup extends Component {
                                 rows="2" 
                                 placeholder="Insert notes here" 
                                 maxLength={2000}
-                                value={this.state.notes}
+                                value={notes}
                                 onChange={this.onChangeNotes}
                             />
                         </div>
+                        {/* USE SELECT INPUT INSTEAD OF RADIO: https://reactjs.org/docs/forms.html */}
                         {/* <div className="form-right">
                             <div className="list-box">
                                 <span>LIST</span>
@@ -97,25 +95,6 @@ class Popup extends Component {
                             <div className="priority-box">
                                 <span>PRIORITY</span>
                                 <div className="priority-choices">
-                                    <div className="radio">
-                                        <input 
-                                            type="radio" 
-                                            id="urgent" 
-                                            name="priority" 
-                                            value="urgent"
-                                            checked={this.state.selectedOption === 'urgent'}
-                                            // onChange={this.onRadioChange} 
-                                        />
-                                        <label htmlFor="urgent">Urgent</label>
-                                    </div>
-                                    <div className="radio">
-                                        <input type="radio" id="moderate" name="priority" value="moderate" />
-                                        <label htmlFor="moderate">Moderate</label>
-                                    </div>
-                                    <div className="radio">
-                                        <input type="radio" id="leisure" name="priority" value="leisure" />
-                                        <label htmlFor="leisure">Leisure</label>
-                                    </div>
                                 </div>
                             </div>
 
@@ -127,29 +106,29 @@ class Popup extends Component {
                     </div>
 
                     <div className="form-handlers">
-                        <button className="close-btn" onClick={handleClose}>Cancel</button>
+                        <button className="close-btn" onClick={ handleClose }>Cancel</button>
                         <button
                             className="submit-btn"
                             type="button"
                             onClick={this.handleForm}
                         >
-                            Add Task
+                            Submit
                         </button>
                     </div>                
                 </form>
-        // } else if (content === 'project') {
-        //     form =                 
-        //         <form onSubmit="storeListName()" className="popup-form project-form" action="post">
-        //             <div className="list-entry-box">
-        //                     <div className="form-title">NAME THIS LIST</div>
-        //                     <textarea className="task-name" name="taskName" id="taskName" rows="1" maxLength={1000} autoFocus></textarea>
-        //             </div>
+        } else if (content === 'project') {
+            form =                 
+                <form className="popup-form project-form" action="post">
+                    <div className="list-entry-box">
+                            <div className="form-title">NAME THIS LIST</div>
+                            <textarea className="task-name" name="taskName" id="taskName" rows="1" maxLength={1000} autoFocus></textarea>
+                    </div>
 
-        //             <div className="form-handlers">
-        //                 <button className="close-btn" onClick={handleClose}>Cancel</button>
-        //                 <button className="submit-btn" type="submit">Create</button>
-        //             </div>   
-        //         </form>
+                    <div className="form-handlers">
+                        <button className="close-btn" onClick={handleClose}>Cancel</button>
+                        <button className="submit-btn" type="submit">Create</button>
+                    </div>   
+                </form>
         }
 
         return(

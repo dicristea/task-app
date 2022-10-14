@@ -48,7 +48,9 @@ Task - Pretty:
 
 Future Project Updates: 
 
-- Windows High Contrast mode --will not see the box-shadow or be able to detect the border color change
+1. add checklist functionality for completed todo's
+
+2.  Windows High Contrast mode --will not see the box-shadow or be able to detect the border color change
   --> try to make 'outline: 3px solid transparent;' work on .form-left>textarea:focus
 
   
