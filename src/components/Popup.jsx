@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import uniqid from "uniqid";
+import fetchArray from "../utils/storageUtils";
 
-// can use ternarary operator and js for repeated parts
 
 class Popup extends Component {
     constructor(props) {
@@ -11,12 +11,13 @@ class Popup extends Component {
         this.onChangeNotes = this.onChangeNotes.bind(this);
         this.onChangePriority = this.onChangePriority.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
-        this.handleForm = this.handleForm.bind(this);
+        this.onChangeProject = this.onChangeProject.bind(this);
+        this.handleTask = this.handleTask.bind(this);
 
         this.state = {
             name: props.task.name || '',
             notes: props.task.notes || '',
-            list: 'Personal',
+            project: props.project || '',
             priority: props.task.priority || 'moderate',
             dueDate: props.task.dueDate || '',
             id: uniqid()
@@ -49,28 +50,30 @@ class Popup extends Component {
         })
     }
 
-    handleForm(e) { 
-        let taskList = [];
-        
-        if (window.localStorage.getItem('tasks') !== null) {
-            taskList = JSON.parse(window.localStorage.getItem('tasks'));
-        }
+    onChangeProject(e) {
+        this.setState ({
+            project: e.target.value
+        })
+    }
 
-        if (this.props.index !== false) {
-            taskList[this.props.index] = this.state
+    handleTask(e) { 
+        const { index, currentProject } = this.props;
+
+        let taskList = fetchArray(currentProject);
+
+        if (index !== false) {
+            taskList[index] = this.state
         } else {
             taskList.push(this.state)
         }
 
-
-        window.localStorage.setItem('tasks', JSON.stringify(taskList)) // localStorage cannot hold any data type except for strings
-        window.location.reload(false) // reloads page to trigger CreateList localStorage display update
+        window.localStorage.setItem(currentProject, JSON.stringify(taskList))
+        window.location.reload(false)
     }
 
-
     render() {
-        const { content, handleClose } = this.props;
-        const { name, notes, priority, dueDate } = this.state;
+        const { content, handleClose, createProject } = this.props;
+        const { name, notes, priority, dueDate, project } = this.state;
 
         let form;
 
@@ -124,11 +127,11 @@ class Popup extends Component {
                     </div>
 
                     <div className="form-handlers">
-                        <button className="close-btn" onClick={ handleClose }>Cancel</button>
+                        <button className="close-btn" onClick={handleClose}>Cancel</button>
                         <button
                             className="submit-btn"
                             type="button"
-                            onClick={this.handleForm}
+                            onClick={this.handleTask}
                         >
                             Submit
                         </button>
@@ -139,12 +142,22 @@ class Popup extends Component {
                 <form className="popup-form project-form" action="post">
                     <div className="list-entry-box">
                             <div className="form-title">NAME THIS LIST</div>
-                            <textarea className="task-name" name="taskName" id="taskName" rows="1" maxLength={1000} autoFocus></textarea>
+                            <textarea 
+                                className="task-name" 
+                                name="taskName" 
+                                id="taskName" 
+                                rows="1" 
+                                maxLength={1000} 
+                                autoFocus
+                                value={project}
+                                onChange={this.onChangeProject}
+                            >
+                            </textarea>
                     </div>
 
                     <div className="form-handlers">
                         <button className="close-btn" onClick={handleClose}>Cancel</button>
-                        <button className="submit-btn" type="submit">Create</button>
+                        <button className="submit-btn" type="submit" onClick={() => createProject(project)}>Create</button>
                     </div>   
                 </form>
         }

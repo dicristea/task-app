@@ -2,12 +2,11 @@
 
 import React, { Component } from "react";
 // import { format } from 'date-fns';
-import editIcon from "../assets/edit.png"
-// import deleteIcon from "../assets/delete.png"
+import fetchArray from "../utils/storageUtils";
 
 
 
-class CreateList extends Component {
+class Tasklist extends Component {
     constructor (props) {
         super(props)
 
@@ -16,25 +15,18 @@ class CreateList extends Component {
 
 
     handleDelete = (index) => {
-        let taskList = [];
+        const { currentProject } = this.props;
+        let taskList = fetchArray(currentProject);
         
-        if (window.localStorage.getItem('tasks') !== null) {
-            taskList = JSON.parse(window.localStorage.getItem('tasks'));
-        }
-        
-        taskList.splice(index, 1)
-        window.localStorage.setItem('tasks', JSON.stringify(taskList)) // localStorage cannot hold any data type except for strings
-        window.location.reload(false)
+        taskList.splice(index, 1);
+        window.localStorage.setItem(currentProject, JSON.stringify(taskList)); // localStorage cannot hold any data type except for strings
+        window.location.reload(false);
     }
 
     render() {        
-        const { handleEdit } = this.props;
+        const { handleEdit, currentProject } = this.props;
 
-        let taskList = [];
-
-        if (window.localStorage.getItem('tasks') !== null) {
-            taskList = JSON.parse(window.localStorage.getItem('tasks'))
-        }
+        let taskList = fetchArray(currentProject);
 
         return(
             <div className="tasks-box">
@@ -65,4 +57,4 @@ class CreateList extends Component {
     };
 };
 
-export default CreateList;
+export default Tasklist;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './Main.css';
-import CreateList from "./CreateList";
+import Tasklist from "./Tasklist";
 import Popup from "./Popup";
+import fetchArray from "../utils/storageUtils";
 
 class Main extends Component {
     constructor (props) {
@@ -9,7 +10,7 @@ class Main extends Component {
 
         this.state = {
             displayEdit: false,
-            taskIndex: ''
+            taskIndex: '',
         }    
     }
 
@@ -22,39 +23,37 @@ class Main extends Component {
     handleEdit = (index) => {
         this.setState({
             displayEdit: !this.state.displayEdit,
-            taskIndex: index
+            taskIndex: index,
         })
     }
 
 
     render() {
         const { displayEdit, taskIndex } = this.state;
+        const { currentProject } = this.props
 
-        let taskList = [];
-
-        if (window.localStorage.getItem('tasks') !== null) {
-            taskList = JSON.parse(window.localStorage.getItem('tasks'))
-        }
+        let project = fetchArray(currentProject);
 
         return(
 
             <div className="main-wrapper">
                 <div className="card main">
                     <div className="tasks-header">
-                        <h1 className="title">Task List</h1>
-                        {/* should change when project/view is selected*/}
+                        <h1 className="title">{currentProject || "Task List"}</h1>
                         <hr />
                     </div>
                     <div className="task-holder">
-                        <CreateList handleEdit={this.handleEdit}/>
+                        <Tasklist currentProject={currentProject} handleEdit={this.handleEdit}/>
                         {
                             displayEdit && 
                             <Popup 
-                                content='task' 
-                                task={taskList[taskIndex]} 
+                                content='task'
+                                currentProject={currentProject} 
+                                task={project[taskIndex]} 
                                 index={taskIndex} 
                                 handleEdit={this.handleEdit} 
-                                handleClose={this.handleClose} />
+                                handleClose={this.handleClose}
+                            />
                         }
 
                     </div>

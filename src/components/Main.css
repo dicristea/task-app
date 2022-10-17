@@ -21,7 +21,7 @@
 
 .title {
     font-size: 1.5rem;
-    margin-bottom: 10px;;
+    margin-bottom: 10px;
 }
 
 .task-holder {
@@ -36,10 +36,12 @@
 
 .tasks-box>div {
     display: grid;
-    grid-template-columns: 100px 2fr 90px repeat(3, min-content);
+    grid-template-columns: 1fr 2fr 90px repeat(3, min-content);
     gap: 10px;
     padding: 10px 0;
     overflow-wrap: break-word;
+    border-bottom: 1px solid var(--line);
+
 }
 
 .edit-task-btn, .delete-task-btn {

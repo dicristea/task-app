@@ -41,6 +41,7 @@ class NavBar extends Component {
 
   render() {
     const { newTask, newProject } = this.state;
+    const { handleTaskList, createProject, projects, currentProject } = this.props;
 
     return(
       <nav className= 'navbar card'>
@@ -53,7 +54,9 @@ class NavBar extends Component {
               content='task' 
               task={false} 
               index={false}
-              handleClose={this.toggleTaskPopup}/>
+              handleClose={this.toggleTaskPopup}
+              currentProject={currentProject}
+            />
           }
         </div>
 
@@ -82,13 +85,32 @@ class NavBar extends Component {
             <div className="projectHeader">
               <h3>Projects</h3>
               <input className="add-task-btn" type="image" id="addProject" onClick={this.toggleProjectPopup} alt="Add Project" src={add} />
-              {newProject && <Popup content='project' handleClose={this.toggleProjectPopup}/>}
+              {
+                newProject && 
+                <Popup 
+                  content='project' 
+                  task={false} 
+                  index={false}
+                  handleClose={this.toggleProjectPopup} 
+                  createProject={createProject}
+                />
+              }
             </div>
             <hr />
-            <ul className="projectsList">
-              <li>Personal</li>
-              <li>Work</li>
-            </ul>
+
+            { 
+              projects.map((project) =>
+                <div className="projectsList" key={project}>
+                  <button 
+                    className="projectButton" 
+                    type="button" 
+                    onClick={() => handleTaskList(project)} 
+                  > 
+                    {project}
+                  </button>
+                </div>
+              )
+            }
           </div>
         </div>
         
