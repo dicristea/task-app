@@ -25,24 +25,27 @@
 }
 
 .task-holder {
-    padding: 20px 0;
     text-align: left;
 }
 
 .tasks-box {
-    display: flex;
-    flex-direction: column;
-}
-
-.tasks-box>div {
     display: grid;
-    grid-template-columns: 1fr 2fr 90px repeat(3, min-content);
-    gap: 10px;
-    padding: 10px 0;
-    overflow-wrap: break-word;
+    gap: 5px;
     border-bottom: 1px solid var(--line);
-
+    padding: 10px 0;
 }
+
+.task-box-top {
+    display: grid;
+    grid-template-columns: 1fr min-content 85px repeat(2, min-content);
+    gap: 10px;
+    overflow-wrap: break-word;
+}
+
+.task-notes {
+    font-size: 0.8rem;
+}
+
 
 .edit-task-btn, .delete-task-btn {
     background-color: transparent;
@@ -64,37 +67,11 @@
 .delete-task-btn {
     background-image: url(../assets/delete.png);
 }
-
-/* .quick-task-form {
-    display: grid;
-    grid-template-columns: auto min-content;
-    gap: 10px;
-    padding: 30px 0;
-}
-
-form>.quick-task-name {
-    border: 1px solid var(--line);
-    caret-color: var(--blue-accent);
-    overflow: hidden;
-    padding: 7px 10px;
-    border-radius: 10px;
-    transition: 180ms;
-    font-size: 1rem;
-}
-
-form>.quick-task-name:focus {
-    border: 1px solid var(--blue-accent);
-} */
   
 .card.display {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.task-placeholder {
-    height: auto;
-    width: 150px;
 }
 
 .create-task-btn {

@@ -49,9 +49,9 @@ ul {
   flex-direction: column;
 }
 
-input, textarea {
+input, textarea, select {
   font-family: inherit;
-  font-size: inherit;
+  /* font-size: inherit; */
   font-weight: inherit;
   line-height: inherit;
   resize: none;

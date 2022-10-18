@@ -1,27 +1,29 @@
-The Odin Project
 Project: Task App
-A dynamically created Task App with React.js exploring usage of primarily class components. The project is inspired by The Odin Project curriculum.
+A Task App created with React.js exploring usage and implementation of class components. The project is inspired by The Odin Project curriculum.
 
-<a href="https://unsplash.com/@andersjilden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🔗</a> Live preview.
+<a href="https://dicristea.github.io/task-app/">🔗Live Preview</a>
 
 Overview
 Features:
 - add, delete and edit projects and tasks
 - write description for the task, choose its date and priority
 - see and edit all information of the task
-- view tasks in different calendar and project views
+- view tasks in different project views
+
+Todo:
 - mark tasks as completed
 - already completed items are archived, can be deleted
 - html semantic elements for better accessibility 
+
 
 Tools:
 - React.js
 - Visual Studio Code
 - CLI
 - Git and GitHub
-- modern-normalize
 - date-fns Library
 
+Todo:
 - ESLint + Airbnb JavaScript Style Guide
 - Prettier Code Formatter
 
@@ -29,6 +31,15 @@ Tools:
 What I learned:
 - Implemented ES6/react modules for organizing code.
 - Set up Web Storage API for storing data.
+
+Tips:
+- localStorage cannot hold any data type except for strings → JSON data (use JSON.parse(string to object), JSON.stingify(any type to string) methods)
+- `window.location.reload(false)`
+  - reloads page to trigger localStorage display update
+  - Project list and Main.js > `handleEdit` update happen automatically → maybe bc it is being sent to parent component and `state` that causes rerender
+- For inline styling:
+  - React will automatically append a “px” suffix to certain numeric inline style properties. If you want to use units other than “px”, specify the value as a string with the desired unit.
+- Can use ternary operator or utils js for repeated parts
 
 
 Sources:
@@ -41,16 +52,21 @@ Favicon:
 
 Menu Icons:
 <a href="https://www.flaticon.com/free-icons/menu" title="menu icons">Menu icons created by Febrian Hidayat - Flaticon</a>
-
-Task - Pretty:
-<a href="https://www.flaticon.com/free-icons/marketing-plan" title="marketing plan icons">Marketing plan icons created by Fliqqer - Flaticon</a>
+<a href="https://fonts.google.com/icons">Google Icons</a>
 
 
-Future Project Updates: 
+Future Updates: 
 
-1. add checklist functionality for completed todo's
+- Beautify date formatting! Very ugly right now (not using [date-fns](https://github.com/date-fns/date-fns))
+- Priority UI should have left margin color or colored flag/star → button on task to change priority?
+- display task updates → use different method rather than `window.location.reload(false)` in Tasklist.js > `handledelete`
+- Add checkmark functionality and cross out completed tasks
+- Move completed todos to completed page instead of deleting (gives user option to delete)
+- Sort by date (today & week)
 
-2.  Windows High Contrast mode --will not see the box-shadow or be able to detect the border color change
+
+- Dynamic for Mobile
+- Accessibility: Windows High Contrast mode --will not see the box-shadow or be able to detect the border color change
   --> try to make 'outline: 3px solid transparent;' work on .form-left>textarea:focus
 
   

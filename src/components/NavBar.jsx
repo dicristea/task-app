@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Popup from './Popup';
+import fetchArray from "../utils/storageUtils";
 
 import today from '../assets/today.png';
 import week from '../assets/week.png';
 import allTasks from '../assets/all-tasks.png';
 import completedTasks from '../assets/completed-tasks.png';
 import add from '../assets/add.png';
+import remove from '../assets/remove.png';
 
-import githubLogo from "../assets/GitHub-Mark-64px.png"
+import githubLogo from "../assets/GitHub-Mark-64px.png";
 
 
 
@@ -38,10 +40,11 @@ class NavBar extends Component {
   };
 
 
-
   render() {
     const { newTask, newProject } = this.state;
-    const { handleTaskList, createProject, projects, currentProject } = this.props;
+    const { handleAllProjects, handleTaskList, createProject, currentProject, removeProject } = this.props;
+
+    let projects = fetchArray('projects');
 
     return(
       <nav className= 'navbar card'>
@@ -61,25 +64,30 @@ class NavBar extends Component {
         </div>
 
         <div className="mainNav">
-
-          <ul className="menuList">
-            <li>
-              <img src={today} alt="Today Icon" />
+          <div className="menuList">
+            <img src={today} alt="Today Icon" />
+            <button type="button">
               Today
-            </li>
-            <li>
-              <img src={week} alt="Today Icon" />
+            </button>
+          </div>
+          <div className="menuList">
+            <img src={week} alt="Today Icon" />
+            <button type="button">
               This Week
-              </li>
-            <li>
-            <img src={allTasks} alt="Today Icon" />
+            </button>
+          </div>
+          <div className="menuList">
+            <img type='image' src={allTasks} alt="Today Icon" />
+            <button type="button" onClick={handleAllProjects()}>
               All
-            </li>
-            <li>
-            <img src={completedTasks} alt="Today Icon" />
+            </button>
+          </div>
+          <div className="menuList">
+            <img type="image" src={completedTasks} alt="Today Icon" />
+            <button type="button">
               Completed
-            </li>
-          </ul>
+            </button>
+          </div>
 
           <div className="projectWrap">
             <div className="projectHeader">
@@ -97,9 +105,8 @@ class NavBar extends Component {
               }
             </div>
             <hr />
-
             { 
-              projects.map((project) =>
+              projects.map((project, index) =>
                 <div className="projectsList" key={project}>
                   <button 
                     className="projectButton" 
@@ -108,6 +115,7 @@ class NavBar extends Component {
                   > 
                     {project}
                   </button>
+                <input className="remove-project-btn" type="image" id="removeProject" onClick={() => removeProject(project, index)} alt="Remove Project" src={remove} />
                 </div>
               )
             }

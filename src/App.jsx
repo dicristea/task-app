@@ -17,7 +17,9 @@ class App extends Component {
       currentProject: projects[0] || ''
     };
 
+    this.handleAllProjects = this.handleAllProjects.bind(this);
     this.createProject = this.createProject.bind(this);
+    this.removeProject = this.removeProject.bind(this);
     this.handleTaskList = this.handleTaskList.bind(this);
   }
 
@@ -29,22 +31,39 @@ class App extends Component {
     localStorage.setItem(project, JSON.stringify([]));
   }
 
+  removeProject = (project, index) => {
+    let projects = fetchArray('projects');
+
+    projects.splice(index, 1);
+    window.localStorage.setItem('projects', JSON.stringify(projects));
+    window.localStorage.removeItem(project);
+    window.location.reload(false);
+  }
+
   handleTaskList = (project) => {
     this.setState({
       currentProject: project
     })
-
   }
+
+  handleAllProjects() {
+    console.log("handling all projects")
+  }
+
 
   render() {
     const { currentProject } = this.state;
 
-    let projects = fetchArray('projects');
-
     return(
       <div className="app">
         <Header />
-        <NavBar projects={projects} currentProject={currentProject} createProject={this.createProject} handleTaskList={this.handleTaskList}/>
+        <NavBar 
+          currentProject={currentProject}
+          handleAllProjects={this.handleAllProjects} 
+          createProject={this.createProject} 
+          removeProject={this.removeProject} 
+          handleTaskList={this.handleTaskList}
+        />
         <Main currentProject={currentProject} />
       </div>
     );

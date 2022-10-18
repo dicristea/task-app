@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import uniqid from "uniqid";
 import fetchArray from "../utils/storageUtils";
+import '../App.css';
 
 
 class Popup extends Component {
@@ -93,10 +94,10 @@ class Popup extends Component {
                                 autoFocus
                             />
                             <div className="form-notes-header">NOTES</div>
-                            <textarea className="task-notes" 
+                            <textarea className="task-notes-input" 
                                 name="taskNotes" 
                                 id="taskNotes" 
-                                rows="2" 
+                                rows="4" 
                                 placeholder="Insert notes here" 
                                 maxLength={2000}
                                 value={notes}
@@ -104,9 +105,9 @@ class Popup extends Component {
                             />
                         </div>
                         <div className="form-right">
-                            <div className="list-box">
+                            {/* <div className="list-box">
                                 <span>LIST</span>
-                            </div>
+                            </div> */}
 
                             <div className="priority-box">
                                 <span>PRIORITY</span>
@@ -119,8 +120,8 @@ class Popup extends Component {
                                 </div>
                             </div>
 
-                            <div className="date-box">
-                            <label htmlFor="dueDate">Due date:</label>
+                            <div className="date-choice">
+                            <label htmlFor="dueDate">DUE DATE</label>
                             <input type="date" id="dueDate" name="due-date" value={dueDate} min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
                             </div>
                         </div>
@@ -140,10 +141,9 @@ class Popup extends Component {
         } else if (content === 'project') {
             form =                 
                 <form className="popup-form project-form" action="post">
-                    <div className="list-entry-box">
+                    <div className="project-entry-box">
                             <div className="form-title">NAME THIS LIST</div>
                             <textarea 
-                                className="task-name" 
                                 name="taskName" 
                                 id="taskName" 
                                 rows="1" 

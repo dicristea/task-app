@@ -1,5 +1,3 @@
-//Will display/render all our tasks
-
 import React, { Component } from "react";
 // import { format } from 'date-fns';
 import fetchArray from "../utils/storageUtils";
@@ -29,27 +27,29 @@ class Tasklist extends Component {
         let taskList = fetchArray(currentProject);
 
         return(
-            <div className="tasks-box">
+            <div>
                 { 
                 taskList.map((task, index) =>
-                    <div key={task.id}>
-                        <div className="task-name" style={{fontWeight: 600}}>{task.name}</div>
+                    <div className="tasks-box" key={task.id}>
+                        <div className="task-box-top">
+                            <div className="task-name" style={{fontWeight: 600}}>{task.name}</div>
+                            <div className="priority-box">{task.priority}</div>
+                            <div className="date-box">{task.dueDate}</div>
+                            <button
+                                className="edit-task-btn"
+                                type="button"
+                                id="editTask"
+                                onClick={() => handleEdit(index)}
+                            />
+                            <button
+                                className="delete-task-btn"
+                                type="button"
+                                id="deleteTask"
+                                onClick={() => this.handleDelete(index)}
+                            />
+                        </div>
                         <div className="task-notes">{task.notes}</div>
-                        <div className="date-box">{task.dueDate}</div>
-                        <div className="priority-box">{task.priority}</div>
-                        <button 
-                            className="edit-task-btn" 
-                            type="button" 
-                            id="editTask" 
-                            onClick={() => handleEdit(index)} 
-                        >
-                        </button>
-                        <button 
-                            className="delete-task-btn" 
-                            type="button" 
-                            id="deleteTask" 
-                            onClick={() => this.handleDelete(index)}
-                         />
+
                     </div>
                 )}
             </div>
