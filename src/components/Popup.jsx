@@ -80,7 +80,7 @@ class Popup extends Component {
 
         if (content === 'task') {
             form = 
-                <form className="popup-form task-form">
+                <div className="popup-form task-form">
                     <div className="task-entry-box">
                         <div className="form-left">
                             <textarea className="task-name-input" 
@@ -105,10 +105,6 @@ class Popup extends Component {
                             />
                         </div>
                         <div className="form-right">
-                            {/* <div className="list-box">
-                                <span>LIST</span>
-                            </div> */}
-
                             <div className="priority-box">
                                 <span>PRIORITY</span>
                                 <div className="priority-choices">
@@ -122,7 +118,7 @@ class Popup extends Component {
 
                             <div className="date-choice">
                             <label htmlFor="dueDate">DUE DATE</label>
-                            <input type="date" id="dueDate" name="due-date" value={dueDate} min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
+                            <input type="date" id="dueDate" name="due-date" value={dueDate} required min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
                             </div>
                         </div>
                     </div>
@@ -137,29 +133,29 @@ class Popup extends Component {
                             Submit
                         </button>
                     </div>                
-                </form>
+                </div>
         } else if (content === 'project') {
             form =                 
-                <form className="popup-form project-form" action="post">
+                <div className="popup-form project-form">
                     <div className="project-entry-box">
-                            <div className="form-title">NAME THIS LIST</div>
-                            <textarea 
-                                name="taskName" 
-                                id="taskName" 
-                                rows="1" 
-                                maxLength={1000} 
-                                autoFocus
-                                value={project}
-                                onChange={this.onChangeProject}
-                            >
-                            </textarea>
+                        <div className="form-title">NAME THIS LIST</div>
+                        <textarea 
+                            name="taskName" 
+                            id="taskName" 
+                            rows="1" 
+                            maxLength={1000} 
+                            autoFocus
+                            value={project}
+                            onChange={this.onChangeProject}
+                        >
+                        </textarea>
                     </div>
 
                     <div className="form-handlers">
                         <button className="close-btn" onClick={handleClose}>Cancel</button>
                         <button className="submit-btn" type="submit" onClick={() => createProject(project)}>Create</button>
                     </div>   
-                </form>
+                </div>
         }
 
         return(

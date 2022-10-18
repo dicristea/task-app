@@ -46,8 +46,8 @@ class App extends Component {
     })
   }
 
-  handleAllProjects() {
-    console.log("handling all projects")
+  handleAllProjects(e) {
+    console.log('handling All projects view')
   }
 
 

@@ -163,9 +163,16 @@ nav.navbar.card {
   caret-color: var(--blue-accent);
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;  /* Firefox */
   padding: 7px 10px;
   border-radius: 10px;
   transition: 200ms;
+}
+
+.form-left>textarea::-webkit-scrollbar, 
+.project-entry-box>textarea::-webkit-scrollbar,
+.task-holder::-webkit-scrollbar {
+  display: none;
 }
 
 .form-left>textarea:focus, .project-entry-box>textarea:focus {

@@ -26,6 +26,8 @@
 
 .task-holder {
     text-align: left;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
 }
 
 .tasks-box {

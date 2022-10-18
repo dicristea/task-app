@@ -78,7 +78,7 @@ class NavBar extends Component {
           </div>
           <div className="menuList">
             <img type='image' src={allTasks} alt="Today Icon" />
-            <button type="button" onClick={handleAllProjects()}>
+            <button type="button" onClick={handleAllProjects}>
               All
             </button>
           </div>
