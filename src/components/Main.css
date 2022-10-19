@@ -39,7 +39,7 @@
 
 .task-box-top {
     display: grid;
-    grid-template-columns: 1fr min-content 85px repeat(2, min-content);
+    grid-template-columns: 1fr 85px repeat(3, min-content);
     gap: 10px;
     overflow-wrap: break-word;
 }

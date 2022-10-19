@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { format } from 'date-fns';
 import fetchArray from "../utils/storageUtils";
 
 
@@ -17,7 +16,7 @@ class Tasklist extends Component {
         let taskList = fetchArray(currentProject);
         
         taskList.splice(index, 1);
-        window.localStorage.setItem(currentProject, JSON.stringify(taskList)); // localStorage cannot hold any data type except for strings
+        window.localStorage.setItem(currentProject, JSON.stringify(taskList));
         window.location.reload(false);
     }
 
@@ -26,6 +25,8 @@ class Tasklist extends Component {
 
         let taskList = fetchArray(currentProject);
 
+        let projects = fetchArray('projects');
+
         return(
             <div>
                 { 
@@ -33,8 +34,8 @@ class Tasklist extends Component {
                     <div className="tasks-box" key={task.id}>
                         <div className="task-box-top">
                             <div className="task-name" style={{fontWeight: 600}}>{task.name}</div>
-                            <div className="priority-box">{task.priority}</div>
                             <div className="date-box">{task.dueDate}</div>
+                            <div className="priority-box">{task.priority}</div>
                             <button
                                 className="edit-task-btn"
                                 type="button"
@@ -49,7 +50,6 @@ class Tasklist extends Component {
                             />
                         </div>
                         <div className="task-notes">{task.notes}</div>
-
                     </div>
                 )}
             </div>

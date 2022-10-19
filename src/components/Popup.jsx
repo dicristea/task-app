@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import uniqid from "uniqid";
+// import { format } from 'date-fns';
+
 import fetchArray from "../utils/storageUtils";
 import '../App.css';
 
@@ -58,7 +60,11 @@ class Popup extends Component {
     }
 
     handleTask(e) { 
-        const { index, currentProject } = this.props;
+        let { index, currentProject } = this.props;
+
+        if (currentProject == '') {
+            currentProject = "Personal";
+        }
 
         let taskList = fetchArray(currentProject);
 
@@ -80,7 +86,7 @@ class Popup extends Component {
 
         if (content === 'task') {
             form = 
-                <div className="popup-form task-form">
+                <form className="popup-form task-form">
                     <div className="task-entry-box">
                         <div className="form-left">
                             <textarea className="task-name-input" 
@@ -118,7 +124,7 @@ class Popup extends Component {
 
                             <div className="date-choice">
                             <label htmlFor="dueDate">DUE DATE</label>
-                            <input type="date" id="dueDate" name="due-date" value={dueDate} required min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
+                            <input type="date" id="dueDate" name="due-date" value={dueDate} min={new Date().toISOString().split('T')[0]} onChange={this.onChangeDate}/>
                             </div>
                         </div>
                     </div>
@@ -133,7 +139,7 @@ class Popup extends Component {
                             Submit
                         </button>
                     </div>                
-                </div>
+                </form>
         } else if (content === 'project') {
             form =                 
                 <div className="popup-form project-form">
@@ -153,7 +159,13 @@ class Popup extends Component {
 
                     <div className="form-handlers">
                         <button className="close-btn" onClick={handleClose}>Cancel</button>
-                        <button className="submit-btn" type="submit" onClick={() => createProject(project)}>Create</button>
+                        <button 
+                            className="submit-btn" 
+                            type="button" 
+                            onClick={() => createProject(project)}
+                        >
+                            Create
+                        </button>
                     </div>   
                 </div>
         }

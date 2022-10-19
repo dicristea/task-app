@@ -12,7 +12,7 @@ class App extends Component {
     super();
     
     let projects = fetchArray('projects');
-    
+
     this.state = {
       currentProject: projects[0] || ''
     };
@@ -29,6 +29,7 @@ class App extends Component {
     projects.push(project);
     localStorage.setItem('projects', JSON.stringify(projects));
     localStorage.setItem(project, JSON.stringify([]));
+    window.location.reload(false);
   }
 
   removeProject = (project, index) => {
@@ -54,6 +55,15 @@ class App extends Component {
   render() {
     const { currentProject } = this.state;
 
+    if (window.localStorage.getItem("projects") == null) {
+      let projects = fetchArray('projects');
+      projects.push("Personal", "Work");
+      localStorage.setItem("Personal", JSON.stringify([]));
+      localStorage.setItem("Work", JSON.stringify([]));
+      localStorage.setItem('projects', JSON.stringify(projects));
+    }
+
+    
     return(
       <div className="app">
         <Header />
