@@ -23,8 +23,9 @@ Todo:
 
 What I learned:
 - Implemented ES6/react modules for organizing code.
-- React functionality: state, props, class components, ES6
-- Set up Web Storage API for storing data.
+  - React functionality: state, props, class components, ES6
+- Set up Web Storage API for storing data
+  - practice with Arrays, Objects, and Key value storage
 
 Tips:
 - localStorage cannot hold any data type except for strings → JSON data (use JSON.parse(string to object), JSON.stingify(any type to string) methods)
