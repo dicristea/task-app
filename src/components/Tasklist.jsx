@@ -21,11 +21,22 @@ class Tasklist extends Component {
     }
 
     render() {        
-        const { handleEdit, currentProject } = this.props;
+        const { handleEdit, currentProject} = this.props;
 
-        let taskList = fetchArray(currentProject);
+        let taskList
 
-        let projects = fetchArray('projects');
+        if(currentProject == 'All Tasks') {
+            let projects = fetchArray('projects');
+
+            let arrayOfTasks = projects.map((project) => {
+              console.log(project);
+              return fetchArray(project)
+            })
+            taskList = [].concat.apply([], arrayOfTasks);
+            console.log(taskList)
+        } else {
+            taskList = fetchArray(currentProject);
+        }
 
         return(
             <div>

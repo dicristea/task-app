@@ -52,7 +52,7 @@ Future Updates:
 
 - Beautify date formatting! Very ugly right now (not using [date-fns](https://github.com/date-fns/date-fns))
 - Priority UI should have left margin color or colored flag/star → button on task to change priority?
-- display task updates → use different method rather than `window.location.reload(false)` in Tasklist.js > `handledelete`
+- display task updates → use different method rather than `window.location.reload(false)` in Tasklist.js > `handledelete`, App.js > `removeProject`, `createProject`
 - When Task is added, page reloads to first Project in Project list -> should reload to current project where task was added
 - Add form validation: required attributes (required html attribute doesn't work in react)
 - Add checkmark functionality and cross out completed tasks
@@ -62,7 +62,7 @@ Future Updates:
 
 Other Updates:
 - Beautify code with best industry practices!
-  -> not supposed to change passed props but ok for now (Popup.js > handleTask)
+  -> not supposed to change passed props but ok for now (Popup.js > handleTask, )
 - Dynamic for Mobile
 - Accessibility: Windows High Contrast mode --will not see the box-shadow or be able to detect the border color change
   --> try to make 'outline: 3px solid transparent;' work on .form-left>textarea:focus

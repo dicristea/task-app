@@ -4,7 +4,7 @@ import fetchArray from "../utils/storageUtils";
 
 import today from '../assets/today.png';
 import week from '../assets/week.png';
-import allTasks from '../assets/all-tasks.png';
+import all from '../assets/all-tasks.png';
 import completedTasks from '../assets/completed-tasks.png';
 import add from '../assets/add.png';
 import remove from '../assets/remove.png';
@@ -42,7 +42,7 @@ class NavBar extends Component {
 
   render() {
     const { newTask, newProject } = this.state;
-    const { handleAllProjects, handleTaskList, createProject, currentProject, removeProject } = this.props;
+    const { handleTaskList, createProject, currentProject, removeProject } = this.props;
 
     let projects = fetchArray('projects');
 
@@ -77,8 +77,8 @@ class NavBar extends Component {
             </button>
           </div>
           <div className="menuList">
-            <img type='image' src={allTasks} alt="Today Icon" />
-            <button type="button" onClick={handleAllProjects}>
+            <img type='image' src={all} alt="Today Icon" />
+            <button type="button" onClick={() => handleTaskList('All Tasks')}>
               All
             </button>
           </div>

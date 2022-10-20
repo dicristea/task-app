@@ -14,10 +14,9 @@ class App extends Component {
     let projects = fetchArray('projects');
 
     this.state = {
-      currentProject: projects[0] || ''
+      currentProject: projects[0] || '',
     };
 
-    this.handleAllProjects = this.handleAllProjects.bind(this);
     this.createProject = this.createProject.bind(this);
     this.removeProject = this.removeProject.bind(this);
     this.handleTaskList = this.handleTaskList.bind(this);
@@ -47,10 +46,6 @@ class App extends Component {
     })
   }
 
-  handleAllProjects(e) {
-    console.log('handling All projects view')
-  }
-
 
   render() {
     const { currentProject } = this.state;
@@ -62,19 +57,18 @@ class App extends Component {
       localStorage.setItem("Work", JSON.stringify([]));
       localStorage.setItem('projects', JSON.stringify(projects));
     }
-
     
     return(
       <div className="app">
         <Header />
-        <NavBar 
+        <NavBar
           currentProject={currentProject}
-          handleAllProjects={this.handleAllProjects} 
           createProject={this.createProject} 
           removeProject={this.removeProject} 
           handleTaskList={this.handleTaskList}
         />
-        <Main currentProject={currentProject} />
+        <Main           
+          currentProject={currentProject} />
       </div>
     );
   }

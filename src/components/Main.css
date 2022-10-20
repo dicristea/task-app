@@ -48,7 +48,6 @@
     font-size: 0.8rem;
 }
 
-
 .edit-task-btn, .delete-task-btn {
     background-color: transparent;
     border-radius: 0;
@@ -67,7 +66,7 @@
 }
 
 .delete-task-btn {
-    background-image: url(../assets/delete.png);
+    background-image: url(../assets/done.png);
 }
   
 .card.display {
