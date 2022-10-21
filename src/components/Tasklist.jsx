@@ -28,12 +28,7 @@ class Tasklist extends Component {
         if(currentProject == 'All Tasks') {
             let projects = fetchArray('projects');
 
-            let arrayOfTasks = projects.map((project) => {
-              console.log(project);
-              return fetchArray(project)
-            })
-            taskList = [].concat.apply([], arrayOfTasks);
-            console.log(taskList)
+            taskList = projects.map((project) => fetchArray(project)).flat()
         } else {
             taskList = fetchArray(currentProject);
         }

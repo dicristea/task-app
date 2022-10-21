@@ -25,9 +25,7 @@ class Popup extends Component {
             dueDate: props.task.dueDate || '',
             id: uniqid()
         }
-
     }
-
 
     onChangeTask(e) {
         this.setState({
@@ -62,7 +60,7 @@ class Popup extends Component {
     handleTask(e) { 
         let { index, currentProject } = this.props;
 
-        if (currentProject == '') {
+        if (currentProject == ''|| currentProject == 'All Tasks') {
             currentProject = "Personal";
         }
 
