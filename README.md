@@ -28,7 +28,11 @@ What I learned:
   - practice with Arrays, Objects, and Key value storage
 
 Tips:
-- localStorage cannot hold any data type except for strings → JSON data (use JSON.parse(string to object), JSON.stingify(any type to string) methods)
+- Use gh-pages to host page on github
+  -> https://github.com/gitname/react-gh-pages
+  -> run `npm run deploy`
+- localStorage cannot hold any data type except for strings 
+  → JSON data (use JSON.parse(string to object), JSON.stingify(any type to string) methods)
 - `window.location.reload(false)`
   - reloads page to trigger localStorage display update
   - Project list and Main.js > `handleEdit` update happen automatically → maybe bc it is being sent to parent component and `state` that causes rerender
